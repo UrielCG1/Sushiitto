@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sushiitto</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+    
+	
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.min.css"> <!-- enlaces para conseguir el-->
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.css">	 <!-- zoom en las imageenes-->
+
+    <link rel="stylesheet" type="text/css" href="slick/slick/slick.css"/>		<!-- zoom en las imageenes-->
+	<link rel="stylesheet" type="text/css" href="slick/slick/slick-theme.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7oSvC9oRVqK3Ski4dsQ9z7PeyH5WkkV0oPP3Rn9dPPxR8SJ6X1sF3BwabKoK00M0xIX1v9eh7aBn3TI5AmFKhA==" crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.min.css">
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.css">
+	<link rel="stylesheet" type="text/css" href="slick/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="slick/slick/slick-theme.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7oSvC9oRVqK3Ski4dsQ9z7PeyH5WkkV0oPP3Rn9dPPxR8SJ6X1sF3BwabKoK00M0xIX1v9eh7aBn3TI5AmFKhA==" crossorigin="anonymous" />
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnBuscar").on("click", function(){
+				realizarBusqueda();
+			});
+		
+			// Captura el evento 'keypress' para detectar la tecla Enter
+			$("#buscarSucursal").on("keypress", function(e){
+				if(e.which === 13) { // 13 es el código de tecla Enter
+					// Realiza la búsqueda al presionar Enter
+					realizarBusqueda();
+				}
+			});
+		
+			function realizarBusqueda() {
+				var searchText = $("#buscarSucursal").val();
+				if(searchText !== ''){
+					$.ajax({
+						url: "search.php",
+						method: "POST",
+						data: {query: searchText},
+						success: function(data){
+							// Actualiza el contenedor de resultados
+							$("#resultados").html(data);
+						}
+					});
+				} else {
+					// Limpia el contenedor de resultados si no hay texto de búsqueda
+					$("#resultados").html('');
+				}
+			}
+		});
+		</script>
+
+	<link rel="stylesheet" type="text/css" href="fonts/icomoon/icomoon.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
+</head>
+<body>
+ 
+	<div class="main-wrapper">
+		<header id="header-wrap">
+			<div class="container">
+				<div class="row">
+				   <nav class="navbar navbar-expand-lg col-md-12">
+				   
+					   <div class="navbar-brand">
+						   <a href="index.html">
+							   <img src="images/logo.png">
+						   </a>
+					   </div>
+   
+					   <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#slide-navbar-collapse" aria-controls="slide-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+					   <span class="navbar-toggler-icon"><i class="icon icon-navicon"></i></span>
+					   </button>
+   
+				   <div class="navbar-collapse collapse" id="slide-navbar-collapse">	
+					   <ul class="navbar-nav light list-inline strong sf-menu">
+						   <li class="nav-item">
+							   <a href="menu.html" class="nav-link" data-effect="Menu">MENÚ</a>
+						   </li>
+						   <li class="nav-item">
+							   <a href="index.html" class="nav-link" data-effect="Promociones">PROMOCIONES</a>
+						   </li>
+						   <li class="nav-item">
+							   <a href="ServDom.html" class="nav-link" data-effect="Delivery">SERVICIO A DOMICILIO</a>
+						   </li>
+						   <li class="nav-item">
+							   <a href="nosotros.html" class="nav-link" data-effect="Nosotros">NOSOTROS</a>
+						   </li>
+						   <li class="dropdown-submenu">
+							   <a href="#" data-effect="Blog" class="nav-link" class="dropdown-toggle">CONTACTO</a>
+							   <ul class="dropdown-menu">
+								   <li class="nav-item">
+									   <a href="index.html" class="hvr-sweep-to-right">FRANQUISIAS</a></li>
+								   <li class="nav-item">
+									   <a href="index.html" class="hvr-sweep-to-right">EMPLEO</a>
+								   </li>
+							   </ul>
+						   </li>
+					   </ul>
+						   
+   
+				   </div>
+   
+					   <div class="social-block">	
+						   <div class="social-icon">
+							   <a href="facebook.com">
+								   <i class="icon icon-facebook"></i>
+							   </a>
+							   <a href="twitter.com">
+								   <i class="icon icon-twitter"></i>
+							   </a>
+							   <a href="instagram.com">
+								   <i class="icon icon-instagram"></i>
+							   </a>
+						   </div>
+					   </div>
+				   </nav>
+				   </div>
+   
+			   </div>
+		   </header>
+   
+
+			</div>
+		</header>
+		<div class="page-banner">
+			<div class="text-content bright heading text-center light">
+				<h1 class="section-title"><strong>MENu</strong> SUSHI ITTO</h1>
+					<div class="divider mb-4">
+						<div class="icon-wrap">
+							<i class="icon icon-spoon"></i>
+						</div>
+					</div>
+			</div>
+		</div><!--site-banner--> 
+
+
+		<div class="centrar-btn">
+			<button onclick="redirigirPedido()">Pedir a Domicilio</button>
+			<img src="images/moto.png" alt="Imagen Descriptiva">
+
+		</div>
+		<div class="page-banner">
+			<div class="text-content bright heading text-center light">
+				<h1 class="section-title"><strong>Descubre </strong> Nuestras sucursales</h1>
+					<div class="divider mb-4">
+						<div class="icon-wrap">
+							<i class="icon icon-spoon"></i>
+						</div>
+					</div>
+				</div>
+			</div><!--site-banner-->
+		<div class="search-container">
+			<!-- Buscador -->
+			<label for="buscarSucursal">Buscar Sucursal:</label>
+			<input type="text" id="buscarSucursal" oninput="filtrarSucursales()">
+		</div>
+
+
+		<!-- Contenedor para mostrar el mensaje de error -->
+		<div id="errorContainer" style="display: none; margin-top: 20px;">
+			Error: Sucursal no Existe
+		</div>
+		<div class="container2">
+
+			<div class="dark price-list mt-sm-5 mt-5">
+				<div class="row2">
+	
+				<table class="col-md-13">
+						
+					<tr>
+						<td>
+							<h2>Lista de Sucursales</h2>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							
+						</td>
+					</tr>
+					
+					
+					<!-- Sushiitto Alamos -->
+					<tr onclick="cambiarMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119519.12818284758!2d-100.4694656110218!3d20.589170175930185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35b361556bbf5%3A0x8b68b56f1ca60b94!2sSushiitto%20Alamos!5e0!3m2!1ses-419!2smx!4v1700712649645!5m2!1ses-419!2smx', 'Sushiitto Alamos', 'Av. Industrialización 7-local 110, alamos, 76160 Santiago de Querétaro, Qro.', 'Abierto ⋅ Cierra a las 11 p.m.', 'Telefono: 4423254215');">
+						<td>
+							<!-- Nombre de la sucursal-->
+							<div class="title">
+								<strong>Sushiitto Alamos</strong> 
+							</div>
+						</td>
+						<!-- Información breve de la sucursal-->
+						<td>
+							<em>Av. Industrialización 7-local 110</em>
+						</td>
+						<!-- Ilusión de botón para obtener más información -->
+						<td class="color-primary">
+							<strong>Más Info</strong>
+						</td>
+					</tr>
+					<!-- Sushi Itto Constituyentes -->
+					<tr onclick="cambiarMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119519.12818284758!2d-100.4694656110218!3d20.589170175930185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662958205e16057%3A0x6b8c65480c5b9f21!2sSushi%20Itto%20Constituyentes!5e0!3m2!1ses-419!2smx!4v1700712694970!5m2!1ses-419!2smx', 'Sushi Itto Constituyentes', 'Constituyentes 180, Las Granjas, 76180 Santiago de Querétaro, Qro.', 'Abierto ⋅ Cierra a las 11 p.m.', 'Telefono: 4423254215');">
+
+							<td>
+								<!-- Nombre de la sucursal-->
+								<div class="title">
+									<strong>Sushi Itto Constituyentes</strong> 
+								</div>
+							</td>
+							<!-- Información breve de la sucursal-->
+							<td>
+								<em>Constituyentes 180</em>
+							</td>
+							<!-- Ilusión de botón para obtener más información -->
+							<td class="color-primary">
+								<strong>Más Info</strong>
+							</td>
+						</tr>
+
+						<!-- SushiItto Jurica -->
+						<tr onclick="cambiarMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119519.12818284758!2d-100.4694656110218!3d20.589170175930185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35a71228666c7%3A0x5a8cad49634d6dc8!2sSushiItto%20Jurica!5e0!3m2!1ses-419!2smx!4v1700712724232!5m2!1ses-419!2smx', 'SushiItto Jurica', 'Av. 5 de Febrero 9200, Jurica, 76130 Santiago de Querétaro, Qro. Piso G · Urban Center Jurica', 'Abierto ⋅ Cierra a las 11 p.m.', 'Telefono: 4423254215');">
+
+							<td>
+								<!-- Nombre de la sucursal-->
+								<div class="title">
+									<strong>SushiItto Jurica</strong> 
+								</div>
+							</td>
+							<!-- Información breve de la sucursal-->
+							<td>
+								<em>Av. 5 de Febrero 9200</em>
+							</td>
+							<!-- Ilusión de botón para obtener más información -->
+							<td class="color-primary">
+								<strong>Más Info</strong>
+							</td>
+						</tr>
+
+						<!-- Sushiitto Centro Sur -->
+						<tr onclick="cambiarMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119472.1642404698!2d-100.58514800273441!3d20.6490185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d345945b865397%3A0x4b4347a6bdd82273!2sSushiitto%20Centro%20Sur!5e0!3m2!1ses-419!2smx!4v1700712767136!5m2!1ses-419!2smx', 'Sushiitto Centro Sur', 'Av Fray Luis de León 7092, Colinas del Cimatario, 76090 Santiago de Querétaro, Qro. Ubicado en: Plaza Nazas', 'Abierto ⋅ Cierra a las 11 p.m.', 'Telefono: 4423254215');">
+							<td>
+								<!-- Nombre de la sucursal-->
+								<div class="title">
+									<strong>Sushiitto Centro Sur</strong> 
+								</div>
+							</td>
+							<!-- Información breve de la sucursal-->
+							<td>
+								<em>Av Fray Luis de León 7092</em>
+							</td>
+							<!-- Ilusión de botón para obtener más información -->
+							<td class="color-primary">
+								<strong>Más Info</strong>
+							</td>
+						</tr>
+
+						<!-- Sushiitto Juriquilla -->
+						<tr onclick="cambiarMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119472.1642404698!2d-100.58514800273441!3d20.6490185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d357605c592337%3A0x42cb470d4b9541e4!2sSushiitto%20Juriquilla!5e0!3m2!1ses-419!2smx!4v1700712791312!5m2!1ses-419!2smx', 'Sushiitto Juriquilla', 'Plaza Tiara, Blvrd de la Campana N. 898-1, 76230 Juriquilla, Qro. Ubicado en: Plaza Tiara', 'Abierto ⋅ Cierra a las 10:30 p.m.', 'Telefono: 4423254215');">
+							<td>
+								<!-- Nombre de la sucursal-->
+								<div class="title">
+									<strong>Sushiitto Juriquilla</strong> 
+								</div>
+							</td>
+							<!-- Información breve de la sucursal-->
+							<td>
+								<em>Plaza Tiara, Blvrd de la Campana N. 898-1</em>
+							</td>
+							<!-- Ilusión de botón para obtener más información -->
+							<td class="color-primary">
+								<strong>Más Info</strong>
+							</td>
+						</tr>
+						
+					</table>
+					<table class="col-md-13">
+						<tr>
+							<td>
+								<!-- Mapa inicial con iframe (oculto inicialmente) -->
+								<iframe id="mapaFrame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26671.927447958467!2d-100.4120368188165!3d20.5931462995594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35b361556bbf5%3A0x8b68b56f1ca60b94!2sSushiitto%20Alamos!5e0!3m2!1ses-419!2smx!4v1700673722390!5m2!1ses-419!2smx" width="510" height="530" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<section id="mapa">
+			<!-- Mapa inicial -->
+			
+	
+			<!-- Div para mostrar información de la sucursal -->
+			<!-- Div mejorado para mostrar información de la sucursal -->
+			<div id="infoSucursal2" class="info-sucursal2">
+				<h2>Información de la Sucursal</h2>
+				<p><i class="fas fa-store"></i> <span id="nombreSucursal"></span></p>
+				<p><i class="fas fa-map-marker-alt"></i> <span id="direccionSucursal"></span></p>
+				<p><i class="far fa-clock"></i> <span id="horarioSucursal"></span></p>
+				<p><i class="fas fa-phone-alt"></i> <span id="telefonoSucursal"></span></p>
+			</div>
+		</section>
+
+	</section>
+	<footer id="footer">
+	   <div class="container">
+		   <div class="row">
+
+			   <div class="col-6 col-md-3">	
+				   <div class="footer-menu">
+						   <h4 class="widget-title">Contact info</h4>
+					   <ul id="footer-menu" class="list-unstyled">
+						   <li><i class="icon icon-map-marker"></i>Av. Jaime Balmes 11-Edificio C, Piso 10, Polanco, Polanco I Secc, Miguel Hidalgo, 11510 Ciudad de México, CDMX, Mexico </li>
+						   <li><i class="icon icon-mobile"></i> 800 007 8744</li>
+						   <li><i class="icon icon-envelope"></i><a href="#">
+							   comentarios@sushi-itto.com.mx</a></li>
+					   </ul>
+				   </div>
+			   </div>
+
+			   <div class="col-6 col-md-2">    
+				   <div class="footer-menu">
+					   <h4 class="widget-title">Support</h4>
+					   <ul id="footer-menu" class="list-unstyled">
+						   <li><a href="https://www.sushi-itto.com.mx/APPS/" target="_blank">Delivery</a></li>
+					   </ul>
+				   </div>
+			   </div>
+
+			   
+
+			   <div class="col-6 col-md-2">	
+				   <div class="footer-menu">
+						   <h4 class="widget-title">Información</h4>
+					   <ul id="footer-menu" class="list-unstyled">
+						   <li><a href="#">Aviso de Privacidad</a></li>
+						   <li><a href="#">Bolsa de trabajo</a></li>
+						   <li><a href="#">Nosotros</a></li>
+					   </ul>
+				   </div>
+			   </div>
+
+
+			   <div class="col-6 col-md-2">	
+				   <div class="social-icon">
+						   <h4 class="widget-title">Find u on</h4>
+					   <ul class="list-unstyled d-flex">
+						   <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+						   <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+						   <li><a href="#"><i class="icon icon-instagram"></i></a></li>
+					   </ul>
+				   </div>
+			   </div>
+		   </div>
+	   </div>
+   </footer> 
+
+   <div class="footer-bottom">
+	   <div class="container">
+		   <div class="content">
+			   <div class="copyright">
+				   <p>© 2023 Sushi Itto. Todos los derechos Reservados.  <a href="https://www.sushi-itto.com.mx/" target="_blank"> Sushi Itto</a></p>
+			   </div>
+			   <div class="payment-card">
+				   <img src="images/esr.jpg" width="170" height="76">
+				   <img src="images/visa.png" class="cardImg">
+				   <img src="images/american-express.png" class="cardImg">
+				   <img src="images/master-card.png" class="cardImg">
+			   </div>
+		   </div>
+	   </div>
+   </div>
+</div>	
+
+
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="slick/slick/slick.min.js"></script>
+
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="fancybox/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
+
+<script> 
+  $(document).ready(function() {
+		$('a.fancybox').fancybox({
+			openEffect  : 'true',
+			closeEffect : 'none',
+			prevEffect : 'none',
+			nextEffect : 'true',
+			closeBtn  : true,
+			helpers : {
+				title : {
+					type : 'inside'
+				},
+				buttons	: {}
+			}
+		});
+		
+
+	$('.slider').slick({
+	  slidesToShow: 3,
+	  slidesToScroll: 1,
+	  autoplay: true,
+	  autoplaySpeed: 2000,
+	  responsive: [
+		{
+		  breakpoint: 768,
+		  settings: {
+			arrows: false,
+			centerMode: true,
+			centerPadding: '40px',
+			slidesToShow: 3
+		  }
+		},
+		{
+		  breakpoint: 576,
+		  settings: {
+			arrows: false,
+			dots: true,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			centerMode: true,
+			centerPadding: '20px',
+			autoplay: false,
+		  }
+		}
+	  ]
+	});
+
+});
+</script>
+
+</body>
+</html>
